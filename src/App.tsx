@@ -1,22 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./components/login";
-import Users from "./components/users";
-import ProtectedRoute from "./components/protectedRoute";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import AddEditUser from "./components/addEditUser";
+import MainRouter from "./MainRouter";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/users" element={<Users />} />
-          <Route path="/createOrUpdateUser" element={<AddEditUser />} />
-        </Route>
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      <MainRouter />
+    </BrowserRouter>
   );
 }
 

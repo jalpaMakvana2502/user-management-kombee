@@ -1,5 +1,4 @@
 import axios from "axios";
-import { retrieveToken } from "../utils/utils";
 
 export const API_BASE_URL = "https://interview.optimavaluepro.com/api/v1/";
 
@@ -9,7 +8,7 @@ export const axiosConfig = axios.create({
 
 axiosConfig.interceptors.request.use(
   (requestConfig) => {
-    const authToken = retrieveToken();
+    const authToken = localStorage.getItem("token");
     if (authToken) {
       requestConfig.headers.Authorization = `Bearer ${authToken}`;
     }

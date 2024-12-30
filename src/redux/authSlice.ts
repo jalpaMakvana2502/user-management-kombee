@@ -6,7 +6,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  token: null,
+  token: localStorage.getItem("token") ?? null,
   error: null,
 };
 
@@ -15,6 +15,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess(state, action) {
+      localStorage.setItem("token", action.payload);
       state.token = action.payload;
       state.error = null;
     },
@@ -22,6 +23,7 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
     logout(state) {
+      localStorage.removeItem("token");
       state.token = null;
       state.error = null;
     },
